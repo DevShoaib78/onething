@@ -30,6 +30,7 @@ export const SITE = {
     "Onething Studio",
   ],
   locale: "en_US",
+  ogAlt: "Onething Studio: websites, apps and MVPs from idea to launch in 1 to 4 weeks",
 };
 
 const ORG_ID = `${SITE.url}/#organization`;
@@ -46,7 +47,7 @@ export function jsonLd() {
         alternateName: "Onething",
         url: SITE.url,
         logo: `${SITE.url}/brand/logo.png`,
-        image: `${SITE.url}/opengraph-image`,
+        image: `${SITE.url}/og-image.png`,
         description: SITE.description,
         slogan: "A studio built for ambitious founders",
         email: CONTACT.email,

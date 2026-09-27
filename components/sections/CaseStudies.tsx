@@ -43,7 +43,7 @@ function Card({ item, index, progress, drift }: { item: CaseStudy; index: number
             src={item.image}
             alt={`${item.name} website, designed and built by Onething`}
             fill
-            sizes="(min-width: 1440px) 1280px, (min-width: 640px) 90vw, 100vw"
+            sizes="(min-width: 1440px) 1280px, (min-width: 640px) 90vw, 60vw"
             className="object-cover object-top"
             priority={index < 2}
           />

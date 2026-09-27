@@ -2,7 +2,11 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-// The link preview for WhatsApp, Telegram, LinkedIn, X and search, generated at build time.
+// Source of public/og-image.png, the link preview for WhatsApp, Telegram, LinkedIn, X and search.
+// Not part of the build (the site is a static export). To regenerate after a brand change: move this
+// file back to app/opengraph-image.tsx, remove `output: "export"` from next.config.ts, run
+// `next build && next start`, save http://localhost:3000/opengraph-image as public/og-image.png,
+// then undo both steps.
 // Everything important sits in the centre: WhatsApp sometimes shows a square crop from the middle.
 export const alt = "Onething Studio: websites, apps and MVPs from idea to launch in 1 to 4 weeks";
 export const size = { width: 1200, height: 630 };

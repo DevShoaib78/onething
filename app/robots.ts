@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/seo";
 
+// Written out as a plain file by the static export.
+export const dynamic = "force-static";
+
 // Open to search engines and to the AI crawlers that power answer engines (GEO/AEO).
 export default function robots(): MetadataRoute.Robots {
   return {

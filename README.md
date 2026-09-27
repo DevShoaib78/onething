@@ -12,11 +12,18 @@ own brand, copy and work.
 
 ```
 npm install
-npm run dev                  # http://localhost:3000
-npm run build && npm start   # production build
+npm run dev      # http://localhost:3000
+npm run build    # static site in out/
+npm start        # serves out/ locally through Cloudflare's wrangler
 ```
 
-Node 20 or newer.
+Node 20.9 or newer (`.node-version` pins 22 for Cloudflare).
+
+## Deploy
+
+The site is a static export (`output: "export"` in `next.config.ts`), deployed to Cloudflare Workers
+static assets. `wrangler.jsonc` runs `npm run build` and serves `./out`; pushes to `main` go to
+production and every other branch or pull request gets its own preview link from Cloudflare.
 
 ## Where things are
 
@@ -26,14 +33,14 @@ Node 20 or newer.
 | `lib/seo.ts` | Title, description, keywords and the JSON-LD graph, built from `lib/content.ts`. |
 | `app/page.tsx` | The page, section by section. |
 | `app/layout.tsx` | Fonts, metadata, structured data, smooth scroll. |
-| `app/opengraph-image.tsx` | The link-preview image, generated at build time. |
-| `app/robots.ts`, `app/sitemap.ts`, `app/manifest.ts`, `app/llms.txt/` | Crawling, sitemap, web manifest and the plain-text brief for AI engines. |
+| `public/og-image.png` | The link-preview image (1200x630). Its source is `scripts/og-image.tsx`, which explains how to regenerate it. |
+| `app/robots.ts`, `app/sitemap.ts`, `app/manifest.ts`, `app/llms.txt/` | Crawling, sitemap, web manifest and the plain-text brief for AI engines, all written out as files at build time. |
 | `components/sections/` | One file per section. |
 | `components/ui/` | Shared pieces: corner ticks, section tag meter, rolling-label buttons, fade-up reveal, accordion. |
 | `components/reactbits/MicroSlats.tsx` | The hero background, [React Bits Micro Slats](https://reactbits.dev/backgrounds/micro-slats), themed orange in `Hero.tsx`. |
-| `public/work/` | Captures of the live client sites. |
+| `public/work/` | Captures of the live client sites, each in three widths (`640/`, `1080/` and full). `lib/image-loader.ts` picks the smallest that fits, since a static export has no image server. |
 | `public/brand/` | Logo and mark. `app/icon.png`, `app/favicon.ico` and `app/apple-icon.png` come from the brand favicon. |
-| `assets/fonts/` | Manrope ExtraBold, used by the preview image. |
+| `assets/fonts/` | Manrope ExtraBold, used by the preview-image source. |
 
 ## Page sections
 
@@ -73,11 +80,11 @@ Navigation: Index, Shipped, Capabilities, Method, Answers.
   word appears twice in the markup.
 - One h1, an h2 per section, h3 per card, descriptive alt text on every image.
 
-Set `NEXT_PUBLIC_SITE_URL` when deploying anywhere other than onething.studio, so preview images
-resolve (on Vercel the deploy URL is picked up automatically).
+Preview tags point at `https://onething.studio`. To get link previews on a Cloudflare preview URL,
+set `NEXT_PUBLIC_SITE_URL` to that URL in the Cloudflare build variables.
 
 ## Performance
 
 Scroll animations use only transform and opacity, there are no backdrop blurs in scrolling content,
-the WebGL hero pauses when off screen, and image drift and film grain are desktop only. Layout is
-checked for horizontal overflow at 320 to 1440px.
+the WebGL hero pauses when off screen, image drift and film grain are desktop only, and phones load
+the smaller image widths. Layout is checked for horizontal overflow at 320 to 1440px.
