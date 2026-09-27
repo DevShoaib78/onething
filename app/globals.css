@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* Onething brand on the Nocta structure: near-black ground, one orange accent,
+   hairline borders, square corners with tick marks. */
+@theme {
+  --color-ink: #0a0a0a;
+  --color-ink-deep: #050505;
+  --color-panel: #0f0f0f;
+  --color-accent: #f97316;
+  --color-muted: rgb(255 255 255 / 0.6);
+  --color-dim: #787878;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-card: rgb(255 255 255 / 0.02);
+
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+html {
+  background: var(--color-ink);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Type scale taken from the reference, retuned for Manrope. */
+@utility text-tiny {
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+@utility text-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4.3vw, 62px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+@utility text-h3 {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+@utility text-h6 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.05;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Film grain over the whole page, like the reference's noise layer. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Infinite tickers */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee-pause:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Rolling label: the copy underneath comes from data-text, not from a second text node. */
+.roll::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.roll-accent::after {
+  color: var(--color-accent);
+}
+
+/* Tab panels ease in when switched. */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up {
+  animation: fadeUp 0.45s var(--ease-out-expo);
+}
+
+/* The animated grain is desktop only; on phones it costs frames for little. */
+@media (max-width: 767px), (pointer: coarse) {
+  .grain { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .grain {
+    animation: none;
+  }
+}
