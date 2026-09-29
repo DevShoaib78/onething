@@ -13,7 +13,7 @@ const COLLAPSED = 120;
 const GAP = 10;
 const N = SERVICES.length;
 
-const num = (i: number) => `/${String(i + 1).padStart(2, "0")}/`;
+const num = (i: number) => `/${String(i + 1).padStart(2, "0")}`;
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (

@@ -89,7 +89,7 @@ export function Navbar() {
                     exit={{ y: "100%" }}
                     transition={{ duration: 0.7, ease: EXPO, delay: 0.15 + i * 0.05 }}
                   >
-                    <span className="mr-3 align-top text-tiny text-muted">/0{i + 1}/</span>
+                    <span className="mr-3 align-top text-tiny text-muted">/0{i + 1}</span>
                     {item.label}
                   </motion.a>
                 </li>

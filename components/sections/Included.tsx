@@ -42,7 +42,7 @@ export function Included() {
               </svg>
               <Corners />
               <div className="relative flex items-center gap-3">
-                <span className="text-tiny text-accent transition-colors duration-500 group-hover:text-ink">/{String(i + 1).padStart(2, "0")}/</span>
+                <span className="text-tiny text-accent transition-colors duration-500 group-hover:text-ink">/{String(i + 1).padStart(2, "0")}</span>
                 <span className="h-px flex-1 bg-line transition-colors duration-500 group-hover:bg-ink/20" />
               </div>
               <h3 className="text-h3 relative mt-auto max-w-[260px] pt-16 text-[24px] transition-colors duration-500 group-hover:text-ink">{item.title}</h3>

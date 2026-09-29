@@ -20,7 +20,7 @@ function Card({ w, i }: { w: (typeof WHY)[number]; i: number }) {
       <div ref={ref} className="relative flex h-full flex-col bg-card">
         <Corners />
         <div className="p-[30px] pb-8 lg:min-h-[228px]">
-          <p className="text-tiny text-dim">Bottleneck /{String(i + 1).padStart(2, "0")}/</p>
+          <p className="text-tiny text-dim">Bottleneck /{String(i + 1).padStart(2, "0")}</p>
           <p className="mt-5 font-display text-[21px] font-semibold uppercase leading-[1.1] tracking-[-0.04em] text-white/45">
             {/* the strike is a background line, so it runs through every wrapped line of the title */}
             <span

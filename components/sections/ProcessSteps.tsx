@@ -23,7 +23,7 @@ export function ProcessSteps() {
               >
                 <span className="flex items-center gap-[15px]">
                   <span className="relative inline-flex h-6 items-center px-3 text-tiny text-muted">
-                    <Corners />/{String(i + 1).padStart(2, "0")}/
+                    <Corners />/{String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="text-h3">{step.title}</span>
                 </span>

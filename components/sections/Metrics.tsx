@@ -24,7 +24,7 @@ export function Metrics() {
           {METRICS.map((m, i) => (
             <div key={m.label} className="flex min-h-[214px] flex-col justify-between border-line p-[30px] [&:not(:first-child)]:border-l max-lg:[&:nth-child(3)]:border-l-0 max-lg:[&:nth-child(n+3)]:border-t">
               <div className="flex items-center justify-between">
-                <span className="text-tiny text-muted">/{String(i + 1).padStart(2, "0")}/</span>
+                <span className="text-tiny text-muted">/{String(i + 1).padStart(2, "0")}</span>
                 <span className="flex gap-[3px]" aria-hidden>
                   {Array.from({ length: i + 1 }).map((_, k) => (
                     <i key={k} className="block h-[10px] w-[2px] bg-accent" />

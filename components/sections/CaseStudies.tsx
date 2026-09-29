@@ -52,7 +52,7 @@ function Card({ item, index, progress, drift }: { item: CaseStudy; index: number
         <motion.span aria-hidden className="absolute inset-0 bg-ink" style={{ opacity: dim }} />
 
         <div className="absolute inset-x-5 top-5 flex items-start justify-between">
-          <Badge>/{String(index + 1).padStart(2, "0")}/</Badge>
+          <Badge>/{String(index + 1).padStart(2, "0")}</Badge>
           <Badge>{item.category}</Badge>
         </div>
         <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-6">
