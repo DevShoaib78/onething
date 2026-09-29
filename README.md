@@ -23,7 +23,8 @@ Node 20.9 or newer (`.node-version` pins 22 for Cloudflare).
 
 The site is a static export (`output: "export"` in `next.config.ts`), deployed to Cloudflare Workers
 static assets. `wrangler.jsonc` runs `npm run build` and serves `./out`; pushes to `main` go to
-production and every other branch or pull request gets its own preview link from Cloudflare.
+production and every other branch or pull request gets its own preview link from Cloudflare
+(`"previews": {}` in `wrangler.jsonc` enables those preview builds).
 
 ## Where things are
 
@@ -48,7 +49,7 @@ production and every other branch or pull request gets its own preview link from
 |---|---|
 | Preloader | Letters rise out of a blur, then the panel lifts |
 | Hero | Micro Slats in brand orange; starts as the loader lifts, pauses off screen |
-| Ticker | Ideate, build, ship, iterate |
+| Ticker | Ideate, build, ship, iterate; one loop every 60s |
 | About | Words light up as you scroll |
 | Shipped & live | 10 live projects; cards pin and stack, covered cards shrink, dim and fade |
 | Capabilities | 1280px and up: the section pins and the five panels open in turn as you scroll. Below that: cards that open as they come into view |
@@ -67,7 +68,7 @@ Navigation: Index, Shipped, Capabilities, Method, Answers.
 
 - Projects and testimonials are real and quoted exactly.
 - Pricing is agreed on a call and confirmed in a quotation; the site never states fixed prices.
-- Section numbering is two digits: /01/, /02/.
+- Numbered labels are two digits with a leading slash: /01, /02, /03.
 
 ## Search and AI visibility
 
