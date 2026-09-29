@@ -8,7 +8,7 @@ export function WordTicker() {
     <section aria-label={TICKER.join(", ")} className="border-y border-line bg-ink-deep">
       <div className="mx-auto max-w-[1440px] px-4 lg:px-10">
         <div className="overflow-hidden border-x border-line">
-          <ul className="marquee-track flex w-max items-center" style={{ ["--marquee-duration" as string]: "38s" }} aria-hidden>
+          <ul className="marquee-track flex w-max items-center" style={{ ["--marquee-duration" as string]: "48s" }} aria-hidden>
             {[...run, ...run].map((w, i) => (
               <li key={i} className="flex h-[81px] items-center">
                 <span
